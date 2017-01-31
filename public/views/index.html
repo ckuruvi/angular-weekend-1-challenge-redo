@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="vendors/angular.min.js" charset="utf-8"></script>
+    <script src="scripts/client.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/vendors/bootstrap.min.css">
+    <link rel="stylesheet" href="/views/style.css">
+    <!-- <link rel="stylesheet" href="/vendors/normalize.css">
+    <link rel="stylesheet" href="/vendors/skeleton.css"> -->
+    <title>Angular Intro</title>
+  </head>
+  <body>
+ <main class="container text-center" ng-app="introApp" ng-controller='FormController as form'>
+<h1>Employee List</h1>
+
+<form>
+    <div class="row">
+      <div class="col-md-6 ">
+    <label for="employeeFirstName">First Name</label>
+    <input type="text" id="employeeFirstName" name="employeeFirstName" ng-model="form.data.employeeFirstName" pattern="[a-zA-Z]*" />
+      </div>
+      <div class="col-md-6 ">
+    <label for="employeeLastName">Last Name</label>
+    <input type="text" id="employeeLastName" name="employeeLastName" ng-model="form.data.employeeLastName" pattern="[a-zA-Z]*"/>
+  </div>
+  </div>
+        <div class="row">
+          <div class="col-md-6">
+    <label for="employeeIdNumber">ID Number</label>
+    <input type="text" name="employeeIdNumber" ng-model="form.data.employeeIdNumber" pattern="[0-9]*"/>
+  </div>
+  <div class="col-md-6">
+    <label for="employeeJobTitle">Job Title</label>
+    <input type="text" name="employeeJobTitle" ng-model="form.data.employeeJobTitle" pattern="[a-zA-Z]*"/>
+  </div>
+  </div>
+      <div class="row">
+        <div class="col-md-6">
+    <label for="employeeAnnualSalary">Annual Salary</label>
+    <input type="text" name="employeeAnnualSalary" ng-model="form.data.employeeAnnualSalary" pattern="[0-9]*.?[0-9]+"/>
+  </div>
+  <div class="col-md-6">
+    <button class="btn btn-sm btn-info" ng-click="form.addEmployee()" type="submit" >Submit</button>
+  </div>
+  </div>
+  </form>
+
+  <div id="employees">
+    <h4>Employee List</h4>
+    <table  class="table table-striped text-center " id="table_id">
+      <thead>
+        <tr class="success">
+          <th class="text-center">First Name</th>
+          <th class="text-center">Last Name</th>
+          <th class="text-center">ID</th>
+          <th class="text-center">Title</th>
+          <th class="text-center">Annual Salary</th>
+          <th class="text-center">Delete</th>
+        </tr>
+      </thead>
+      <tbody id="employee text-center">
+        <tr ng-repeat="emp in form.empList">
+          <td>{{emp.employeeFirstName}}</td>
+          <td>{{emp.employeeLastName}}</td>
+          <td>{{emp.employeeIdNumber}}</td>
+          <td>{{emp.employeeJobTitle}}</td>
+          <td>{{emp.employeeAnnualSalary}}</td>
+          <td><button  class="btn btn-xs btn-info" ng-click="form.deleteEmployee($index,emp.employeeAnnualSalary)" type="submit" >Delete</button></td>
+        </tr>
+      </tBody>
+    </table>
+    <!-- to be added via JavaScript -->
+  </div>
+<p></p>
+  <div id=totalExpenditure>
+    Monthly Salary Expenditure:<input type="text" id="amt" value={{form.SalaryExpenditure}} readonly>
+  </div>
+ </main>
+  </body>
+</html>
